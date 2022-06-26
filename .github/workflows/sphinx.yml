@@ -85,18 +85,18 @@ jobs:
           mkdir -p _gh-pages/branch/
       # If a push and default branch, copy build to _gh-pages/ as the "main"
       # deployment.
-      - name: Copy new build (default branch)
-        if: |
-          contains(github.event_name, 'push') &&
-          contains(github.ref, env.DEFAULT_BRANCH)
-        run: |
-          set -x
-          # Delete everything under _gh-pages/ that is from the
-          # primary branch deployment.  Eicludes the other branches
-          # _gh-pages/branch-* paths, and not including
-          # _gh-pages itself.
-          find _gh-pages/ -mindepth 1 ! -path '_gh-pages/branch*' -delete
-          rsync -a _build/dirhtml/ _gh-pages/
+#      - name: Copy new build (default branch)
+#        if: |
+#          contains(github.event_name, 'push') &&
+#          contains(github.ref, env.DEFAULT_BRANCH)
+#        run: |
+#          set -x
+#          # Delete everything under _gh-pages/ that is from the
+#          # primary branch deployment.  Eicludes the other branches
+#          # _gh-pages/branch-* paths, and not including
+#          # _gh-pages itself.
+#          find _gh-pages/ -mindepth 1 ! -path '_gh-pages/branch*' -delete
+#          rsync -a _build/dirhtml/ _gh-pages/
       # If a push and not on default branch, then copy the build to
       # _gh-pages/branch/$brname (transforming '/' into '--')
       - name: Copy new build (branch)
